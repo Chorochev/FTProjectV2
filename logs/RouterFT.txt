@@ -1,0 +1,2 @@
+09-05-2022 Creating a virtual machine.
+09-05-2022 Setting hardware.
