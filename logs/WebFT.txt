@@ -5,3 +5,4 @@
 10-05-2022 Setting join ip-address with MAC-address for External.
            IP: "192.168.0.200"; MAC: "08:00:27:AE:DD:84"; Hostname: "WebFT-Internet";
 10-05-2022 Installing Debian.
+10-05-2022 Installing SSH.

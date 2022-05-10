@@ -1,0 +1,27 @@
+################################################################################
+## for Putty
+## Create user sshalex
+$ sudo adduser sshalex --disabled-password
+$ su sshalex
+$ cd ~ 
+## or
+$ cd /home/sshalex
+$ mkdir .ssh
+$ chmod 700 .ssh
+$ cd .ssh
+## create file "/home/sshalex/.ssh/authorized_keys" and copy public key into
+$ nano /home/sshalex/.ssh/authorized_keys
+
+################################################################################
+## for Windows Terminal
+## Create user winsshalex
+$ sudo adduser winsshalex --disabled-password
+$ su winsshalex
+$ cd ~ 
+## or
+$ cd /home/winsshalex
+$ mkdir .ssh
+$ chmod 700 .ssh
+$ cd .ssh
+## create file "/home/winsshalex/.ssh/authorized_keys" and copy public key into
+$ nano /home/winsshalex/.ssh/authorized_keys

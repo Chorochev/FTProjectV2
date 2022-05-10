@@ -1,0 +1,46 @@
+################################################################################
+## SSH for Debian
+## the PC needs to install the 'openssh-server' for connecting on SSH
+################################################################################
+## check status of SSH
+$ sudo systemctl status sshd
+################################################################################
+## find installed packages 'SSH'
+$ dpkg --list | grep ssh
+
+################################################################################
+## install SSH
+$ sudo apt update
+$ sudo apt install openssh-server ssh
+################################################################################
+## start the service SSH
+$ sudo systemctl start sshd
+
+################################################################################
+## local connect
+$ ssh root@localhost
+
+################################################################################
+## /etc/ssh/sshd_config - config SSH
+$ nano /etc/ssh/sshd_config
+## change port: "Port 22" => "Port 4422"
+## Listen to only the management networks machine:
+#### for WebFT => "ListenAddress 192.168.0.101"
+#### for RouterFT => "ListenAddress 192.168.0.102"
+#### for DatabaseFT => "ListenAddress 192.168.0.103"
+## disable the root user: 
+## "PermitRootLogin no"
+## dissable key-authentication
+## uncomment "PubkeyAuthentication" and "AuthorizedKeysFile":
+## "PubkeyAuthentication yes"
+## "AuthorizedKeysFile     .ssh/authorized_keys"
+## set:
+## "PasswordAuthentication no"
+## "ChallengeResponseAuthentication no"
+## "UsePAM no"
+
+################################################################################
+## Restart the service SSH
+$ sudo systemctl restart sshd
+
+

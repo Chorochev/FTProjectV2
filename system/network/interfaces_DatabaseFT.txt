@@ -1,0 +1,12 @@
+################################################################################
+## Settings of network for WebFT.
+## nano /etc/network/interfaces
+# network for management auto ip
+auto enp0s3
+iface enp0s3 inet dhcp
+nameserver 192.168.0.1
+
+
+################################################################################
+## restart interfaces
+## sudo systemctl restart networking

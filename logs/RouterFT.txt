@@ -3,3 +3,4 @@
 10-05-2022 Setting join ip-address with MAC-address for Management.
            IP: "192.168.0.102"; MAC: "08:00:27:45:D4:A7"; Hostname: "RouterFT";
 10-05-2022 Installing Debian.
+10-05-2022 Installing SSH.
