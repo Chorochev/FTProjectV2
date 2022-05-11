@@ -1,0 +1,60 @@
+################################################################################
+## Install dhcp-server for FTRouter
+
+################################################################################
+## find the package
+$ apt show isc-dhcp-server
+
+################################################################################
+## install package
+$ sudo apt install isc-dhcp-server
+
+################################################################################
+## edit dhcp
+## set interfaces for dhcp:
+$ nano /etc/default/isc-dhcp-server
+## set interfaces:
+INTERFACESv4="enp0s8 enp0s9"
+INTERFACESv6=""
+################################################################################
+
+################################################################################
+## dhcp setings:
+$ nano /etc/dhcp/dhcpd.conf
+
+option domain-name "RouterFT.local";
+option domain-name-servers RouterFT.local;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+ddns-update-style none;
+
+subnet 192.168.70.0 netmask 255.255.255.0 {
+  interface enp0s8;
+  range 192.168.70.10 192.168.70.100;
+  option subnet-mask 255.255.255.0;
+  option broadcast-address 192.168.70.255;
+}
+
+subnet 192.168.90.0 netmask 255.255.255.0 {
+  interface enp0s9;
+  range 192.168.90.10 192.168.90.100;
+  option subnet-mask 255.255.255.0;
+  option broadcast-address 192.168.90.255;
+}
+
+################################################################################
+
+################################################################################
+## version 1 - restart dhcp
+$ /etc/init.d/isc-dhcp-server restart
+## version 2 - restart dhcp
+$ sudo service isc-dhcp-server stop
+$ sudo service isc-dhcp-server start
+## version 3 - restart dhcp
+$ sudo service isc-dhcp-server restart
+
+################################################################################
+## check dhcp
+$ sudo service isc-dhcp-server status
