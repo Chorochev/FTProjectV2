@@ -1,10 +1,30 @@
 ################################################################################
 ## Settings of network for WebFT.
 ## nano /etc/network/interfaces
+
+################################################################################
 # network for management auto ip
 auto enp0s3
 iface enp0s3 inet dhcp
 nameserver 192.168.0.1
+
+# network for web
+auto enp0s8
+allow-hotplug enp0s8
+iface enp0s8 inet static
+address 192.168.70.1
+netmask 255.255.255.0
+network 192.168.70.0
+broadcast 192.168.70.255
+
+# network for DB
+auto enp0s9
+allow-hotplug enp0s9
+iface enp0s9 inet static
+address 192.168.90.1
+netmask 255.255.255.0
+network 192.168.90.0
+broadcast 192.168.90.255
 
 
 ################################################################################
