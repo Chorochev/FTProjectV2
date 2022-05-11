@@ -8,3 +8,4 @@
             /home/sshalex/backup/backup.sh
             /home/sshalex/backup/run_backup.sh     
 11-05-2022 Setting interfaces.             
+11-05-2022 Update Kernel in Debian.
