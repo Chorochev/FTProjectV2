@@ -1,0 +1,30 @@
+################################################################################
+## Show the version of the kernel
+$ uname -a
+Linux RouterFT 5.10.0-14-amd64 #1 SMP Debian 5.10.113-1 (2022-04-29) x86_64 GNU/Linux
+
+################################################################################
+$ sudo apt update
+## Find new versions of kernel
+$ apt search linux-headers
+$ apt search linux-headers | grep bullseye
+$ apt search linux-image
+$ apt search linux-image | grep bullseye
+
+...
+linux-headers-5.16.0-0.bpo.4-rt-amd64/bullseye-backports 5.16.12-1~bpo11+1 amd64
+...
+linux-image-5.16.0-0.bpo.4-rt-amd64/bullseye-backports 5.16.12-1~bpo11+1 amd64
+...
+
+################################################################################
+## Update the kernel
+$ sudo apt install linux-headers-5.16.0-0.bpo.4-rt-amd64 linux-image-5.16.0-0.bpo.4-rt-amd64
+
+## Restart system
+$ sudo reboot
+
+################################################################################
+## Show the new version of the kernel
+$ uname -a
+Linux RouterFT 5.16.0-0.bpo.4-rt-amd64 #1 SMP PREEMPT_RT Debian 5.16.12-1~bpo11+1 (2022-03-08) x86_64 GNU/Linux
