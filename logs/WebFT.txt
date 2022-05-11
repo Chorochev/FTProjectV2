@@ -1,8 +1,11 @@
-09-05-2022 Creating a virtual machine.
-09-05-2022 Setting hardware.
-10-05-2022 Setting join ip-address with MAC-address for Management.
-           IP: "192.168.0.101"; MAC: "08:00:27:2F:EA:68"; Hostname: "WebFT";
-10-05-2022 Setting join ip-address with MAC-address for External.
-           IP: "192.168.0.200"; MAC: "08:00:27:AE:DD:84"; Hostname: "WebFT-Internet";
-10-05-2022 Installing Debian.
-10-05-2022 Installing SSH.
+09-05-2022  Creating a virtual machine.
+09-05-2022  Setting hardware.
+10-05-2022  Setting join ip-address with MAC-address for Management.
+            IP: "192.168.0.101"; MAC: "08:00:27:2F:EA:68"; Hostname: "WebFT";
+10-05-2022  Setting join ip-address with MAC-address for External.
+            IP: "192.168.0.200"; MAC: "08:00:27:AE:DD:84"; Hostname: "WebFT-Internet";
+10-05-2022  Installing Debian.
+10-05-2022  Installing SSH.
+11-05-2022  Scripts for backup:
+            /home/sshalex/backup/backup.sh
+            /home/sshalex/backup/run_backup.sh
