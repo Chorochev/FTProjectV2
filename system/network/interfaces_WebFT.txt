@@ -1,11 +1,21 @@
 ################################################################################
 ## Settings of network for WebFT.
 ## nano /etc/network/interfaces
+
 # network for management auto ip
 auto enp0s3
 iface enp0s3 inet dhcp
 nameserver 192.168.0.1
 
+# network for external auto ip
+auto enp0s8
+iface enp0s8 inet dhcp
+nameserver 192.168.0.1
+
+# network for intranet-1 auto ip
+auto enp0s9
+iface enp0s9 inet dhcp
+nameserver 192.168.70.1
 
 ################################################################################
 ## restart interfaces

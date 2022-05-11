@@ -9,3 +9,4 @@
 11-05-2022  Scripts for backup:
             /home/sshalex/backup/backup.sh
             /home/sshalex/backup/run_backup.sh
+11-05-2022 Setting interfaces.              
