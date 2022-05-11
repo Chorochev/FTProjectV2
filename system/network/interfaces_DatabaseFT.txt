@@ -1,5 +1,5 @@
 ################################################################################
-## Settings of network for WebFT.
+## Settings of network for DatabaseFT.
 ## nano /etc/network/interfaces
 
 # network for management auto ip
@@ -14,4 +14,19 @@ nameserver 192.168.90.1
 
 ################################################################################
 ## restart interfaces
-## sudo systemctl restart networking
+$ sudo systemctl restart networking
+
+################################################################################
+## Add DNS-servers for DatabaseFT.
+## check DNS
+$ cat /etc/resolv.conf
+
+## install manager of DNS
+$ sudo apt install resolvconf
+
+## add DNS-server
+$ nano /etc/resolvconf/resolv.conf.d/base
+## add => 'nameserver 192.168.0.1'
+## restart
+$ sudo resolvconf -u
+$ sudo systemctl restart networking

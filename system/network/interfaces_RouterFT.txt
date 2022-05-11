@@ -1,5 +1,5 @@
 ################################################################################
-## Settings of network for WebFT.
+## Settings of network for RouterFT.
 ## nano /etc/network/interfaces
 
 ################################################################################
@@ -29,4 +29,19 @@ broadcast 192.168.90.255
 
 ################################################################################
 ## restart interfaces
-## sudo systemctl restart networking
+$ sudo systemctl restart networking
+
+################################################################################
+## Add DNS-servers for RouterFT.
+## check DNS
+$ cat /etc/resolv.conf
+
+## install manager of DNS
+$ sudo apt install resolvconf
+
+## add DNS-server
+$ nano /etc/resolvconf/resolv.conf.d/base
+## add => 'nameserver 192.168.0.1'
+## restart
+$ sudo resolvconf -u
+$ sudo systemctl restart networking

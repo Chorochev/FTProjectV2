@@ -19,4 +19,19 @@ nameserver 192.168.70.1
 
 ################################################################################
 ## restart interfaces
-## sudo systemctl restart networking
+$ sudo systemctl restart networking
+
+################################################################################
+## Add DNS-servers for WebFT.
+## check DNS
+$ cat /etc/resolv.conf
+
+## install manager of DNS
+$ sudo apt install resolvconf
+
+## add DNS-server
+$ nano /etc/resolvconf/resolv.conf.d/base
+## add => 'nameserver 192.168.0.1'
+## restart
+$ sudo resolvconf -u
+$ sudo systemctl restart networking
