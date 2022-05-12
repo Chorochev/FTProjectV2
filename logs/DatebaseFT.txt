@@ -9,3 +9,4 @@
             /home/sshalex/backup/run_backup.sh     
 11-05-2022 Setting interfaces.             
 11-05-2022 Update Kernel in Debian.
+12-05-2022 Installing net-tools.

@@ -1,0 +1,24 @@
+################################################################################
+## install net-tools for monitoring
+$ sudo apt install net-tools
+
+################################################################################
+## netstat  - Print network connections
+## shows statistics
+$ netstat -s
+## shows opened/closed ports
+$ netstat -tulpn
+
+################################################################################
+## arp - manipulate the system ARP cache
+## shows ARP cache
+$ sudo arp
+$ sudo arp -a
+## shows numerical addresses
+$ sudo arp -n
+
+################################################################################
+## route - show / manipulate the IP routing table
+$ sudo route
+## add the route => route add .....
+## del the route => route del .....
