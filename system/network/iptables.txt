@@ -1,0 +1,93 @@
+################################################################################
+## OPTIONS     
+## COMMANDS - commands start with a capital letter
+## PARAMETERS - commands start with a small letter
+
+################################################################################
+## chains: PREROUTING, INPUT, FORWARD, OUTPUT, POSTROUTING
+
+################################################################################
+## TABLES:
+## [-t, --table table] This option specifies the packet matching table 
+##                     which the command should operate on. 
+## filter:   This is the !!!DEFAULT!!! table. 
+##           'sudo iptables --table filter -vnL' == 'sudo iptables -vnL'
+##           Chains: [INPUT, FORWARD, OUTPUT].
+## nat:      This table is consulted when a packet that creates a new 
+##           connection is encountered. 
+##           Chains: [PREROUTING, INPUT, OUTPUT, POSTROUTING].
+## mangle:   This  table  is  used  for specialized packet alteration.
+##           Chains: [PREROUTING, OUTPUT, INPUT, FORWARD, POSTROUTING].
+## raw:      This  table is used mainly for configuring exemptions from 
+##           connection tracking in combination with the NOTRACK target. 
+##           Chains: [PREROUT, ING, OUTPUT].
+## security: This  table  is used for Mandatory Access Control (MAC) networking rules:
+##           Chains: [INPUT, OUT, PUT, FORWARD].
+
+################################################################################
+## COMMANDS:
+## -A, --append - set rule for the selected chain.
+## --state 
+#### NEW — All packages establishing a new connection.
+#### ESTABLISHED — All packages belonging to the established connection.
+#### RELATED — Packages that do not belong to the established connection.
+#### INVALID — Bab packages.
+## links: https://skeletor.org.ua/?p=1719
+##        https://losst.ru/prosmotr-pravil-iptables
+##        https://www.opennet.ru/docs/RUS/iptables/
+##        https://www.opennet.ru/man.shtml?topic=iptables
+
+## -j - TARGETS (iptables-extensions(8).  
+#### ACCEPT means to let the packet through. 
+#### DROP means to drop the packet on the floor. 
+#### RETURN means stop traversing this chain and resume at the next rule in the 
+####        previous (calling) chain. If the end of a built-in chain is reached 
+####        or a rule in a built-in chain with target RETURN is matched, the target 
+####        specified by the chain policy determines the fate of the packet. 
+
+##  -X, --delete-chain [chain]
+$ sudo iptables -X
+$ sudo iptables -X -t nat
+$ sudo iptables -X -t mangle
+
+## -F, --flush [chain]
+## Clear all rules
+$ sudo iptables -F
+$ sudo iptables -F -t nat
+$ sudo iptables -F -t mangle
+
+
+################################################################################
+################################################################################
+## struct of iptables' command
+$ iptables -t "table" "action" "chain" "additional_parameters" 
+
+## clear all rules 
+$ sudo iptables -F
+
+################################################################################
+## Activate these new rules from file:
+$ sudo sudo iptables-restore < *file*
+## And see the difference:
+$ sudo iptables -L
+$ sudo iptables -vnL
+
+################################################################################
+## turn on FORWARD *) it won't work after reboot.
+$ echo 1 > /proc/sys/net/ipv4/ip_forward
+# Turn on forwarding packets for IPv4
+sudo sysctl -w net.ipv4.ip_forward=1
+
+## for work after reboot
+## set net.ipv4.ip_forward=1 in file "/etc/sysctl.conf"
+$ nano /etc/sysctl.conf
+$ sudo sysctl -p /etc/sysctl.conf
+
+## Save rules to file
+$ sudo iptables-save > iptables_rules_temp.ipv4
+
+################################################################################
+## for working firewall after reboot 
+## needs create file "/etc/network/if-pre-up.d/firewall" and gives permissions for run.
+$ cp /home/sshalex/iptables/firewall /etc/network/if-pre-up.d/firewall
+$ chmod +x /etc/network/if-pre-up.d/firewall

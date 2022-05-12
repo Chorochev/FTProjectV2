@@ -95,11 +95,9 @@ function backup_for_iptables() {
     check_backup_catalogs $name_iptables
     printf "${GREEN}Creating backup for ssh.${NC}\n" 
     script_name='run_backup_iptables.sh'   
-    files_for_backup='iptables_rules.ipv4'
-    sudo iptables-save > $files_for_backup   
-    ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_iptables --name 'backup_'$name_iptables
-    execute_scrip_for_backup $script_name  
-    rm $files_for_backup
+    files_for_backup='/etc/network/if-pre-up.d/firewall'    
+    ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_iptables --name 'backup_'$name_iptables --script 'yes'
+    execute_scrip_for_backup $script_name      
 }
 
 # -------------- all --------------------------------------------------------- #
