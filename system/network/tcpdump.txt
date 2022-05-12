@@ -6,4 +6,6 @@ $ sudo apt install tcpdump
 ## shows packages from interface enp0s3
 $ sudo tcpdump -i enp0s3
 ## shows packages from interface enp0s3 for source 192.168.0.52
-$ sudo tcpdump -i enp0s3 ip src 192.168.0.52
+$ sudo tcpdump -i enp0s8 ip src 192.168.70.10
+## listen multiple interfaces
+$ sudo tcpdump -i enp0s3 -i enp0s8 ip src 192.168.70.10
