@@ -11,3 +11,4 @@
 11-05-2022 Update Kernel in Debian.
 12-05-2022 Installing net-tools.
 12-05-2022 Installing firewall.
+13-05-2022 Setting firewall.

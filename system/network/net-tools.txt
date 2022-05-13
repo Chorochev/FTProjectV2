@@ -8,6 +8,7 @@ $ sudo apt install net-tools
 $ netstat -s
 ## shows opened/closed ports
 $ netstat -tulpn
+$ netstat -an --inet
 
 ################################################################################
 ## arp - manipulate the system ARP cache

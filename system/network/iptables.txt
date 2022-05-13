@@ -1,4 +1,8 @@
 ################################################################################
+man iptables
+man iptables-extensions
+
+################################################################################
 ## OPTIONS     
 ## COMMANDS - commands start with a capital letter
 ## PARAMETERS - commands start with a small letter
@@ -37,13 +41,9 @@
 ##        https://www.opennet.ru/docs/RUS/iptables/
 ##        https://www.opennet.ru/man.shtml?topic=iptables
 
-## -j - TARGETS (iptables-extensions(8).  
-#### ACCEPT means to let the packet through. 
-#### DROP means to drop the packet on the floor. 
-#### RETURN means stop traversing this chain and resume at the next rule in the 
-####        previous (calling) chain. If the end of a built-in chain is reached 
-####        or a rule in a built-in chain with target RETURN is matched, the target 
-####        specified by the chain policy determines the fate of the packet. 
+## -P, --policy chain target
+####    Set  the  policy  for the built-in (non-user-defined) chain to the given target.  
+####    The policy target must be either ACCEPT or DROP.
 
 ##  -X, --delete-chain [chain]
 $ sudo iptables -X
@@ -55,6 +55,57 @@ $ sudo iptables -X -t mangle
 $ sudo iptables -F
 $ sudo iptables -F -t nat
 $ sudo iptables -F -t mangle
+
+################################################################################
+## PARAMETERS:
+
+## -m, --match match
+####    Specifies a match to use, that is, an extension module that tests for 
+####    a specific property. The set of matches make up  the condition under 
+####    which a target is invoked. Matches are evaluated first to last as 
+####    specified on the command line and work in short-circuit fashion, i.e. 
+####    if one extension yields false, evaluation will stop.
+
+## -j, --jump - TARGETS (iptables-extensions(8).  
+## This specifies the target of the rule; i.e., what to do if the packet matches it.
+#### ACCEPT means to let the packet through. 
+#### DROP means to drop the packet on the floor. 
+#### RETURN means stop traversing this chain and resume at the next rule in the 
+####        previous (calling) chain. If the end of a built-in chain is reached 
+####        or a rule in a built-in chain with target RETURN is matched, the target 
+####        specified by the chain policy determines the fate of the packet. 
+
+## [!] -i, --in-interface name
+####    Name of an interface via which a packet was received (only for packets 
+####    entering the INPUT,  FORWARD  and  PREROUTING  chains).
+####    When the "!" argument is used before the interface name, the sense is inverted.
+## [!] -o, --out-interface name
+####    Name of an interface via which a packet is going to be sent (for packets 
+####    entering the FORWARD, OUTPUT and POSTROUTING chains).
+####    When the "!" argument is used before the interface name, the sense is inverted.  
+
+## [!] -p, --protocol protocol
+####    The protocol of the rule or of the packet to check.  The specified protocol 
+####    can be one of tcp, udp, udplite, icmp, icmpv6, esp, ah, sctp, mh or 
+####    the special keyword "all", or it can be a numeric value, representing one 
+####    of these protocols  or  a  different one.
+####    A "!" argument before the address specification inverts the sense of the address.
+
+## [!] --destination-port,--dport port[:port]
+## [!] --destination-ports,--dports port[,port|,port:port]...
+####    Destination port or port range specification.
+#### samples: --dport 22
+####          --dport 22:80 - range from 22 to 80.
+####          --dports 22,80
+
+## [!] --source-port,--sport port[:port]
+## [!] --source-ports,--sports port[,port|,port:port]...
+
+
+## --state state
+####    Where state is a comma separated list of the connection states to match. 
+####    Only a subset of the states unterstood by "conntrack" are recognized: 
+####    INVALID, ESTABLISHED, NEW, RELATED or UNTRACKED.
 
 
 ################################################################################
