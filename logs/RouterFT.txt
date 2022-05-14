@@ -12,3 +12,5 @@
 12-05-2022 Installing net-tools.
 12-05-2022 Installing firewall.
 13-05-2022 Setting firewall.
+14-05-2022 Setting DHCP. Setting the statics IPs for the local PCs.
+14-05-2022 Setting DNS names.

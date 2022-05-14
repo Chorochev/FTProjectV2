@@ -32,19 +32,56 @@ ddns-update-style none;
 
 subnet 192.168.70.0 netmask 255.255.255.0 {
   interface enp0s8;
-  range 192.168.70.10 192.168.70.100;
+  range 192.168.70.5 192.168.70.100;
   option subnet-mask 255.255.255.0;
   option broadcast-address 192.168.70.255;
 }
 
 subnet 192.168.90.0 netmask 255.255.255.0 {
   interface enp0s9;
-  range 192.168.90.10 192.168.90.100;
+  range 192.168.90.5 192.168.90.100;
   option subnet-mask 255.255.255.0;
   option broadcast-address 192.168.90.255;
 }
 
+host WebFT.local {
+  hardware ethernet 08:00:27:85:b2:f6;
+  fixed-address 192.168.70.5;
+}
+
+host FTDatabase.local {
+  hardware ethernet 08:00:27:78:56:ca;
+  fixed-address 192.168.90.5;
+}
+
 ################################################################################
+
+################################################################################
+## hosts setings:
+$ nano /etc/hosts
+
+## for WebFT
+127.0.0.1       localhost
+127.0.1.1       WebFT
+192.168.70.5    WebFT.local
+192.168.70.1    RouterFT.local
+192.168.90.5    DatabaseFT.local
+
+## for RouterFT
+127.0.0.1       localhost
+127.0.1.1       RouterFT
+192.168.70.5    WebFT.local
+192.168.90.5    DatabaseFT.local
+
+## for DatabaseFT
+127.0.0.1       localhost
+127.0.1.1       DatabaseFT
+192.168.70.5    WebFT.local
+192.168.90.5    DatabaseFT.local
+192.168.90.1    RouterFT.local
+
+################################################################################
+
 
 ################################################################################
 ## version 1 - restart dhcp
