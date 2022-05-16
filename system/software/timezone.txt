@@ -1,0 +1,43 @@
+##############################################################################
+## https://wiki.debian.org/TimeZoneChanges
+## Setting timezone
+
+##############################################################################
+## date - print or set the system date and time
+## date' samples
+$ date
+$ date +%R
+$ date +%Y-%m-%d
+$ date +%H-%M-%S
+$ date +%Y-%m-%d_%H-%M-%S
+$ date --utc
+
+##############################################################################
+## timedatectl - Control the system time and date
+$ timedatectl
+$ timedatectl status
+$ timedatectl timesync-status
+
+## set date
+## MM - mouths, DD - days, HH - hours, mm - minutes
+$ date MMDDHHmm
+
+##############################################################################
+## update timezones' list
+$ sudo apt update && apt upgrade tzdata
+## timezones' list
+$ timedatectl list-timezones
+## set timezone
+$ timedatectl set-timezone Europe/Moscow
+## check the service of timesyncd
+$ systemctl status systemd-timesyncd
+## turn on the service
+$ systemctl enable systemd-timesyncd
+$ systemctl start systemd-timesyncd
+## turn off the service
+$ systemctl stop systemd-timesyncd
+$ systemctl disable systemd-timesyncd
+
+
+## the configuration file
+$ /etc/systemd/timesyncd.conf
