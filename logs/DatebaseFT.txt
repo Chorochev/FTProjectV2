@@ -12,3 +12,5 @@
 12-05-2022 Installing net-tools.
 12-05-2022 Adding route for local net.
 14-05-2022 Setting DNS names.
+17-05-2022 Installing LVM (Logical Volume Manager)
+           Add two disks. Mount to "/local/files".
