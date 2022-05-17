@@ -13,6 +13,7 @@ declare name_dhcp="dhcp"
 declare name_network="network"
 declare name_ssh="ssh"
 declare name_iptables="iptables"
+declare name_timeserver="timeserver"
 
 # ---------------------------------------------------------------------------- #
 # -------------- inner functions --------------------------------------------- #
@@ -53,7 +54,7 @@ function execute_scrip_for_backup() {
 # -------------- apt --------------------------------------------------------- #
 function backup_for_apt() {
     check_backup_catalogs $name_apt
-    printf "${GREEN}Creating backup for apt.${NC}\n" 
+    printf "${GREEN}1) Creating backup for apt.${NC}\n" 
     script_name='run_backup_apt.sh'
     files_for_backup='/etc/apt/sources.list'  
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_apt --name 'backup_'$name_apt --script 'yes'
@@ -63,7 +64,7 @@ function backup_for_apt() {
 # -------------- dhcp -------------------------------------------------------- #
 function backup_for_dhcp() {
     check_backup_catalogs $name_dhcp
-    printf "${GREEN}Creating backup for dhcp.${NC}\n" 
+    printf "${GREEN}2) Creating backup for dhcp.${NC}\n" 
     script_name='run_backup_dhcp.sh'
     files_for_backup='/etc/default/isc-dhcp-server,/etc/dhcp/dhcpd.conf'  
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_dhcp --name 'backup_'$name_dhcp --script 'yes'
@@ -73,7 +74,7 @@ function backup_for_dhcp() {
 # -------------- network ----------------------------------------------------- #
 function backup_for_network() {
   check_backup_catalogs $name_network
-  printf "${GREEN}Creating backup for network.${NC}\n" 
+  printf "${GREEN}3) Creating backup for network.${NC}\n" 
   script_name='run_backup_network.sh'
   files_for_backup='/etc/hosts,/etc/network/interfaces,/etc/resolv.conf,/etc/resolvconf/resolv.conf.d/base'
   ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_network --name 'backup_'$name_network --script 'yes'
@@ -83,7 +84,7 @@ function backup_for_network() {
 # -------------- ssh --------------------------------------------------------- #
 function backup_for_ssh() {
     check_backup_catalogs $name_ssh
-    printf "${GREEN}Creating backup for ssh.${NC}\n" 
+    printf "${GREEN}4) Creating backup for ssh.${NC}\n" 
     script_name='run_backup_ssh.sh'
     files_for_backup='/etc/ssh/sshd_config'
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_ssh --name 'backup_'$name_ssh --script 'yes'
@@ -93,11 +94,21 @@ function backup_for_ssh() {
 # -------------- iptables ---------------------------------------------------- #
 function backup_for_iptables() {
     check_backup_catalogs $name_iptables
-    printf "${GREEN}Creating backup for ssh.${NC}\n" 
+    printf "${GREEN}5) Creating backup for ssh.${NC}\n" 
     script_name='run_backup_iptables.sh'   
     files_for_backup='/etc/network/if-pre-up.d/firewall'    
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_iptables --name 'backup_'$name_iptables --script 'yes'
     execute_scrip_for_backup $script_name      
+}
+
+# -------------- time-server ------------------------------------------------- #
+function backup_for_timeserver() {
+    check_backup_catalogs $name_timeserver
+    printf "${GREEN}6) Creating backup for time-server.${NC}\n" 
+    script_name='run_backup_timeserver.sh'
+    files_for_backup='/etc/ntp.conf,/etc/systemd/timesyncd.conf'
+    ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_timeserver --name 'backup_'$name_timeserver --script 'yes'
+    execute_scrip_for_backup $script_name
 }
 
 # -------------- all --------------------------------------------------------- #
@@ -107,6 +118,7 @@ function backup_all() {
     backup_for_network
     backup_for_ssh
     backup_for_iptables
+    backup_for_timeserver
 }
 
 # -------------- main -------------------------------------------------------- #
@@ -118,6 +130,7 @@ options=("Backup for apt"
          "Backup for network"
          "Backup for ssh"
          "backup for iptables"
+         "backup for time-server"
          "backup all"
          "backup all and quit"
          "Quit")
@@ -138,6 +151,9 @@ do
             ;;
         "backup for iptables")
             backup_for_iptables
+            ;;
+        "backup for time-server")
+            backup_for_timeserver
             ;;
         "backup all")
            backup_all

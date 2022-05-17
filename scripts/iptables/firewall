@@ -19,6 +19,12 @@ sudo iptables -A OUTPUT --out-interface enp0s3 -p udp --dport 53 -j ACCEPT
 # Allows synchronized time (ntpdate)
 sudo iptables -A OUTPUT --out-interface enp0s3 -p udp --dport 123 -j ACCEPT
 
+# for time-server
+sudo iptables -A INPUT --in-interface enp0s8 -p udp --dport 123 -j ACCEPT
+sudo iptables -A OUTPUT --out-interface enp0s8 -p udp --dport 123 -j ACCEPT
+sudo iptables -A INPUT --in-interface enp0s9 -p udp --dport 123 -j ACCEPT
+sudo iptables -A OUTPUT --out-interface enp0s9 -p udp --dport 123 -j ACCEPT
+
 # Now, allow connection to website serverfault.com on port 80
 sudo iptables --append OUTPUT --out-interface enp0s3 --protocol tcp --dport 80 -j ACCEPT
 sudo iptables --append OUTPUT --out-interface enp0s3 --protocol tcp --dport 443 -j ACCEPT

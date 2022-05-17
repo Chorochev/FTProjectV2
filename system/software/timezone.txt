@@ -1,6 +1,10 @@
 ##############################################################################
 ## https://wiki.debian.org/TimeZoneChanges
 ## Setting timezone
+## udp port 123 - needs for synchronized time (ntpdate)
+
+##############################################################################
+$ uptime
 
 ##############################################################################
 ## date - print or set the system date and time
@@ -40,4 +44,69 @@ $ systemctl disable systemd-timesyncd
 
 
 ## the configuration file
-$ /etc/systemd/timesyncd.conf
+$ nano /etc/systemd/timesyncd.conf
+##--> NTP=RouterFT.local
+
+
+##############################################################################
+## time-service
+## stop and disable systemd-timesyncd
+$ systemctl stop systemd-timesyncd
+$ systemctl disable systemd-timesyncd
+##--> Removed /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service.
+##--> Removed /etc/systemd/system/dbus-org.freedesktop.timesync1.service.
+## check
+$ timedatectl
+##-->  NTP service: inactive
+
+## install ntpdate for one-time time synchronization
+$ sudo apt install ntpdate
+## makes synchronization
+$ sudo ntpdate pool.ntp.org
+##--> 17 May 07:25:39 ntpdate[1545]: adjust time server 194.190.168.1 offset +0.005950 sec
+
+## install/update time-service "npt"
+$ sudo apt install ntp
+## start time-service "npt"
+$ sudo systemctl start ntp
+## add time-service "npt" to the autoboot
+$ sudo systemctl enable ntp
+##--> Synchronizing state of ntp.service with SysV service script with /lib/systemd/systemd-sysv-install.
+##--> Executing: /lib/systemd/systemd-sysv-install enable ntp
+
+## check status
+$ sudo systemctl status ntp
+##--> Active: active (running) ....
+
+## check status
+$ ntpq -p
+
+##############################################################################
+## Configuring an ntp Server in Debian
+
+$ nano /etc/ntp.conf
+## add:
+--------------------------------------------------------
+# for local networks
+restrict 192.168.70.0 mask 255.255.255.0 nomodify notrap
+restrict 192.168.90.0 mask 255.255.255.0 nomodify notrap
+# logs
+logfile /var/log/ntp.log
+--------------------------------------------------------
+
+## restart ntp Server
+$ sudo systemctl restart ntp
+## check status
+$ sudo systemctl status ntp
+
+##############################################################################
+## Check ntp Server
+## 
+$ sudo ntpdate RouterFT.local
+
+root@WebFT:/home/winsshalex# sudo ntpdate 192.168.70.1
+17 May 08:33:51 ntpdate[1484]: adjust time server 192.168.70.1 offset +0.004676 sec
+
+root@DatabaseFT:/home/winsshalex# sudo ntpdate 192.168.90.1
+17 May 08:36:45 ntpdate[1164]: adjust time server 192.168.90.1 offset -0.008415 sec
+
