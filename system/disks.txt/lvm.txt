@@ -1,0 +1,43 @@
+################################################################################
+## LVM (Logical Volume Manager)
+## https://losst.ru/sozdanie-i-nastrojka-lvm-linux
+
+## shows disks
+$ sudo fdisk -l
+
+## show disks
+$ lsblk
+
+## install LVM
+$ sudo apt install lvm2
+
+## init disks
+$ sudo pvcreate /dev/sdb /dev/sdc
+##-->  Physical volume "/dev/sdb" successfully created.
+##-->  Physical volume "/dev/sdc" successfully created.
+
+## show results
+$ sudo pvscan
+##-->  PV /dev/sdb                      lvm2 [4.00 GiB]
+##-->  PV /dev/sdc                      lvm2 [4.00 GiB]
+##-->  Total: 2 [8.00 GiB] / in use: 0 [0   ] / in no VG: 2 [8.00 GiB]
+
+## show results
+$ sudo pvdisplay
+
+## creates group
+$ sudo vgcreate vol_grp1 /dev/sdb /dev/sdc
+##-->  Volume group "vol_grp1" successfully created
+
+## shows groups
+## sudo vgdisplay
+
+## create 2 bloks (-l 2)
+$ sudo lvcreate -l 2 -n logical_vol1 vol_grp1
+##-->  Logical volume "logical_vol1" created.
+
+## show results
+$ sudo lvdisplay
+
+## format disks 
+$  sudo mkfs.ext4 /dev/vol_grp1/logical_vol1

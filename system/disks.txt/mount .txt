@@ -1,0 +1,25 @@
+################################################################################
+## mount disks
+
+## shows disks
+$ lsblk
+$ sudo fdisk -l
+
+
+## create folders
+$ mkdir /local
+$ mkdir /local/files
+
+## mount disks
+$ sudo mount /dev/vol_grp1/logical_vol1 /local/files
+
+## mount disks after boot
+$ nano /etc/fstab
+## add:
+# /local/files
+UUID=29860294-7210-453c-8440-52cad18bfd96       /local/files    ext4    auto    0       2
+
+## reboot
+$ sudo reboot
+## check 
+$ lsblk

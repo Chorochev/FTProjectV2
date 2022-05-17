@@ -14,6 +14,7 @@ declare name_network="network"
 declare name_ssh="ssh"
 declare name_iptables="iptables"
 declare name_timeserver="timeserver"
+declare name_mountdisks="mountdisks"
 
 # ---------------------------------------------------------------------------- #
 # -------------- inner functions --------------------------------------------- #
@@ -111,6 +112,16 @@ function backup_for_timeserver() {
     execute_scrip_for_backup $script_name
 }
 
+# -------------- time-server ------------------------------------------------- #
+function backup_for_mount_disks() {
+    check_backup_catalogs $name_mountdisks
+    printf "${GREEN}7) Creating backup for mount disks.${NC}\n" 
+    script_name='run_backup_mountdisks.sh'
+    files_for_backup='/etc/fstab'
+    ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_mountdisks --name 'backup_'$name_mountdisks --script 'yes'
+    execute_scrip_for_backup $script_name
+}
+
 # -------------- all --------------------------------------------------------- #
 function backup_all() {
     backup_for_apt
@@ -119,6 +130,7 @@ function backup_all() {
     backup_for_ssh
     backup_for_iptables
     backup_for_timeserver
+    backup_for_mount_disks
 }
 
 # -------------- main -------------------------------------------------------- #
@@ -131,6 +143,7 @@ options=("Backup for apt"
          "Backup for ssh"
          "backup for iptables"
          "backup for time-server"
+         "backup for mount disks"
          "backup all"
          "backup all and quit"
          "Quit")
@@ -154,6 +167,9 @@ do
             ;;
         "backup for time-server")
             backup_for_timeserver
+            ;;
+        "backup for mount disks")
+            backup_for_mount_disks
             ;;
         "backup all")
            backup_all
