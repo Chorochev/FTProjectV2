@@ -1,0 +1,69 @@
+################################################################################
+## RAID (Redundant Array of Inexpensive Disks)
+## https://losst.ru/programmnyj-raid-v-linux
+
+## fdisk - manipulate disk partition table
+## shows disks
+$ sudo fdisk -l
+
+## print block device attributes
+$ sudo blkid
+
+## install mdadm
+$ sudo apt install mdadm
+
+## list block devices
+$ lsblk
+
+## create tables
+$ sudo parted /dev/sdd mklabel msdos
+$ sudo parted /dev/sde mklabel msdos
+
+## create parted
+$ sudo parted /dev/sdd mkpart primary ext4 2048 4Gb
+$ sudo parted /dev/sde mkpart primary ext4 2048 4Gb
+
+## check
+$ lsblk
+sdd                       8:48   0  4.2G  0 disk
+└─sdd1                    8:49   0  1.8G  0 part
+sde                       8:64   0  4.2G  0 disk
+└─sde1                    8:65   0  1.8G  0 part
+
+## create RAID 
+## md0 - array's name 
+## --level=1  - mirror (type of RAID)
+## --raid-devices=2 - count devices
+$ sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdd1 /dev/sde1
+
+## check
+$ lsblk
+sdd                       8:48   0  4.2G  0 disk
+└─sdd1                    8:49   0  1.8G  0 part
+  └─md0                   9:0    0  1.8G  0 raid1
+sde                       8:64   0  4.2G  0 disk
+└─sde1                    8:65   0  1.8G  0 part
+  └─md0                   9:0    0  1.8G  0 raid1
+
+## format disks
+$ sudo mkfs -t ext4 /dev/md0
+
+## mount disk
+$ sudo mount /dev/md0 /local/backups
+
+## test speed
+$ sudo dd if=/dev/zero of=/local/backups/file bs=500MB count=3
+3+0 records in
+3+0 records out
+1500000000 bytes (1.5 GB, 1.4 GiB) copied, 3.50196 s, 428 MB/s
+
+## information about RAID 
+$ cat /proc/mdstat
+$ sudo mdadm --detail /dev/md0
+$ sudo mdadm --examine /dev/sdd1 /dev/sde
+
+## save RAID
+$ sudo mdadm --detail --scan --verbose | sudo tee -a /etc/mdadm/mdadm.conf
+$ sudo update-initramfs -u
+
+## !!! see mount disk in "mount.txt"

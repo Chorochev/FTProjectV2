@@ -117,7 +117,7 @@ function backup_for_mount_disks() {
     check_backup_catalogs $name_mountdisks
     printf "${GREEN}7) Creating backup for mount disks.${NC}\n" 
     script_name='run_backup_mountdisks.sh'
-    files_for_backup='/etc/fstab'
+    files_for_backup='/etc/fstab,/etc/mdadm/mdadm.conf'
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_mountdisks --name 'backup_'$name_mountdisks --script 'yes'
     execute_scrip_for_backup $script_name
 }

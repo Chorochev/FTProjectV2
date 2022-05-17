@@ -2,10 +2,11 @@
 ## LVM (Logical Volume Manager)
 ## https://losst.ru/sozdanie-i-nastrojka-lvm-linux
 
+## fdisk - manipulate disk partition table
 ## shows disks
 $ sudo fdisk -l
 
-## show disks
+## list block devices
 $ lsblk
 
 ## install LVM
@@ -41,3 +42,5 @@ $ sudo lvdisplay
 
 ## format disks 
 $  sudo mkfs.ext4 /dev/vol_grp1/logical_vol1
+
+## !!! see mount disk in "mount.txt"

@@ -1,10 +1,11 @@
 ################################################################################
 ## mount disks
 
-## shows disks
+## list block devices
 $ lsblk
+## fdisk - manipulate disk partition table
+## shows disks
 $ sudo fdisk -l
-
 
 ## create folders
 $ mkdir /local
@@ -13,13 +14,34 @@ $ mkdir /local/files
 ## mount disks
 $ sudo mount /dev/vol_grp1/logical_vol1 /local/files
 
+## print block device attributes (find UUID of disk)
+$ sudo blkid
+
 ## mount disks after boot
 $ nano /etc/fstab
 ## add:
 # /local/files
 UUID=29860294-7210-453c-8440-52cad18bfd96       /local/files    ext4    auto    0       2
 
+################################################################################
+## mount RAID
+
+## create folders
+$ mkdir /local
+$ mkdir /local/backups 
+
+## mount disks
+$ sudo mount /dev/md0 /local/backups
+
+## mount disks after boot
+$ nano /etc/fstab
+## add:
+# RAID /local/backups
+UUID=79a25884-5394-44a6-9d2f-8a600f05e015       /local/backups    ext4    auto    0       3
+
+################################################################################
+## check
 ## reboot
 $ sudo reboot
-## check 
+## list block devices
 $ lsblk
