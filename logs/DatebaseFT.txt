@@ -16,3 +16,4 @@
            Add two disks. Mount to "/local/files".
 17-05-2022 Installing RAID (Redundant Array of Inexpensive Disks)
            Add two disks. Mount to "/local/backups".
+17-05-2022 Installing mysql.

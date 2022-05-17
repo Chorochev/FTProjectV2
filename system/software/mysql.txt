@@ -1,0 +1,31 @@
+################################################################################
+## Installing mysql
+## https://losst.ru/ustanovka-mysql-v-debian-10
+
+$ cd /tmp
+
+## shows the last package version mysql
+## (mysql-apt-config_0.8.22-1_all.deb)
+## download 
+$ wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
+
+## install the package
+$ sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
+
+## install mysql
+$ sudo apt update
+$ sudo apt install mysql-server
+
+## check status
+$ sudo systemctl status mysql
+
+## on/off
+$ sudo systemctl start mysql
+$ sudo systemctl restart mysql
+$ sudo systemctl stop mysql
+$ sudo systemctl reload mysql
+
+## run mysql
+$ mysql -u root -p
+## exit mysql
+mysql> quit;
