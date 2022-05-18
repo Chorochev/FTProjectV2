@@ -32,3 +32,6 @@ $ sudo systemctl start nginx
 $ systemctl status nginx
 ## auto-load after reboot
 $ sudo systemctl enable nginx
+
+# check 
+http://localhost
