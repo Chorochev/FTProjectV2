@@ -1,0 +1,104 @@
+################################################################################
+## uWSGI - web-server for Python
+## A fresh Debian 11 installation has Python 3 installed by default.
+
+## show version
+$ python3 --version
+##--> Python 3.9.2
+
+## run Python
+$ python3
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+>>> exit()
+
+## Update python3
+$ sudo apt update
+$ sudo apt install python3 python3-dev python3-pip
+
+## Installing additional packages for python
+$ pip3 install virtualenv uwsgi
+
+## check 
+$ uwsgi --version
+
+################################################################################
+## create test app
+## create a direction for python app
+$ mkdir -p /var/www/python_app
+$ cd /var/www/python_app
+$ nano /var/www/python_app/wsgi.py
+--------------------------------------------------------------
+#!/usr/bin/env python3
+# -*- encoding: utf-8 -*-
+
+def application(env, start_response):
+    start_response('200 OK', [('Content-Type','text/html')])
+    return [b"<h1>Hello World</h1>"]
+--------------------------------------------------------------    
+
+################################################################################
+## for farewall
+## iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+
+################################################################################
+## test web-server for manual start:
+## create virtual environment 
+$ virtualenv myappenv
+## activating virtual environment 
+& source myappenv/bin/activate
+## run web-server
+$ uwsgi --socket 0.0.0.0:8080 --protocol=http -w wsgi
+## 
+$ deactivate
+
+################################################################################
+## installing auto-start web-server
+$ sudo apt install uwsgi uwsgi-plugin-python3
+
+## create a configuration file for our app
+$ nano /etc/uwsgi/apps-enabled/python_app.ini
+--------------------------------------------------------------
+[uwsgi]
+module = wsgi:application
+chdir = /var/www/python_app
+plugins = python3
+max-requests = 5000
+processes = 5
+threads = 2
+master = true
+http = 0.0.0.0:8080
+die-on-term = true
+socket=/var/www/python_app/uwsgi.sock
+chmod-socket=644
+--------------------------------------------------------------
+
+################################################################################
+## restart nginx and uwsgi
+## restart nginx
+$ sudo systemctl restart nginx
+## restart uwsgi needs after change *.py
+## turn on
+$ systemctl enable uwsgi
+## run
+$ systemctl restart uwsgi
+################################################################################
+
+## check 
+http://WebFT:8080/
+
+################################################################################
+## setting nginx
+nano /etc/nginx/sites-enabled/default
+--------------------------------------------------------------
+location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                # try_files $uri $uri/ =404;
+                include uwsgi_params;
+                uwsgi_pass unix:/var/www/python_app/uwsgi.sock;
+                try_files $uri $uri/ /wsgi.py?$query_string;
+        }
+--------------------------------------------------------------
+# check settings
+$ sudo nginx -t 

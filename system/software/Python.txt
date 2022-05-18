@@ -1,0 +1,12 @@
+################################################################################
+## A fresh Debian 11 installation has Python 3 installed by default.
+
+## show version
+$ python3 --version
+##--> Python 3.9.2
+
+## run Python
+$ python3
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+>>> exit()

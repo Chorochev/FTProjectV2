@@ -15,3 +15,6 @@
 12-05-2022 Adding route for local net.
 14-05-2022 Setting DNS names.
 18-05-2022 Installing NGINX.
+18-05-2022 Installing uwsgi - server for python
+           web-app:  http://localhost into WeFT
+                     http://webft/ outside

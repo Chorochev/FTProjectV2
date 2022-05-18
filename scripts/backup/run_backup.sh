@@ -15,6 +15,7 @@ declare name_ssh="ssh"
 declare name_iptables="iptables"
 declare name_timeserver="timeserver"
 declare name_mountdisks="mountdisks"
+declare name_nginx="nginx"
 
 # ---------------------------------------------------------------------------- #
 # -------------- inner functions --------------------------------------------- #
@@ -122,6 +123,16 @@ function backup_for_mount_disks() {
     execute_scrip_for_backup $script_name
 }
 
+# -------------- nginx-server ------------------------------------------------ #
+function backup_for_nginx() {
+    check_backup_catalogs $name_nginx
+    printf "${GREEN}7) Creating backup for nginx.${NC}\n" 
+    script_name='run_backup_nginx.sh'
+    files_for_backup='/etc/nginx/sites-enabled/default,/etc/uwsgi/apps-enabled/python_app.ini'
+    ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_nginx --name 'backup_'$name_nginx --script 'yes'
+    execute_scrip_for_backup $script_name
+}
+
 # -------------- all --------------------------------------------------------- #
 function backup_all() {
     backup_for_apt
@@ -131,6 +142,7 @@ function backup_all() {
     backup_for_iptables
     backup_for_timeserver
     backup_for_mount_disks
+    backup_for_nginx
 }
 
 # -------------- main -------------------------------------------------------- #
@@ -144,6 +156,7 @@ options=("Backup for apt"
          "backup for iptables"
          "backup for time-server"
          "backup for mount disks"
+         "backup for nginx"
          "backup all"
          "backup all and quit"
          "Quit")
@@ -170,6 +183,9 @@ do
             ;;
         "backup for mount disks")
             backup_for_mount_disks
+            ;;
+        "backup for nginx")
+            backup_for_nginx
             ;;
         "backup all")
            backup_all
