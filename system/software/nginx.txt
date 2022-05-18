@@ -1,0 +1,34 @@
+################################################################################
+## Installing NGINX
+## https://nginx.org/ru/linux_packages.html
+
+$ sudo apt update 
+
+## curl - transfer a URL
+$ sudo apt install curl
+
+## Update NGINX
+## add key GPS
+$ curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \| sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+## check key
+$ gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+
+## repository with stable version
+$ echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \http://nginx.org/packages/debian `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+## select a connected repository
+$ echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \| sudo tee /etc/apt/preferences.d/99nginx
+
+$ sudo apt update 
+
+## inatall nginx
+$ apt install nginx -y
+
+## show nginx's version
+$ sudo nginx -v
+
+## start nginx
+$ sudo systemctl start nginx
+## status nginx
+$ systemctl status nginx
+## auto-load after reboot
+$ sudo systemctl enable nginx
