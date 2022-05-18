@@ -18,5 +18,6 @@
            Add two disks. Mount to "/local/backups".
 17-05-2022 Installing mysql.
 18-05-2022 CREATE DATABASE bookshelf.
-18-05-2022 Installing PostgreSQL
-18-05-2022 Instaling 'pgAdmin 4'
+18-05-2022 Installing PostgreSQL.
+18-05-2022 Instaling 'pgAdmin 4'.
+18-05-2022 Create DB for PostgreSQL.
