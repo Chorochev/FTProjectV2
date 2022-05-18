@@ -17,3 +17,4 @@
 17-05-2022 Installing RAID (Redundant Array of Inexpensive Disks)
            Add two disks. Mount to "/local/backups".
 17-05-2022 Installing mysql.
+18-05-2022 CREATE DATABASE bookshelf.

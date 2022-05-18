@@ -25,7 +25,12 @@ $ sudo systemctl restart mysql
 $ sudo systemctl stop mysql
 $ sudo systemctl reload mysql
 
+################################################################################
 ## run mysql
 $ mysql -u root -p
 ## exit mysql
 mysql> quit;
+
+################################################################################
+## run sql
+$ mysql -u root -p < create_database.sql
