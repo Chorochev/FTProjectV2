@@ -10,3 +10,7 @@ $ python3
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 >>> exit()
+
+## Psycopg is a PostgreSQL adapter for the Python
+## install
+$ pip install psycopg2-binary

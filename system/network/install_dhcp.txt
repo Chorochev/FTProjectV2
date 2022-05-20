@@ -95,3 +95,12 @@ $ sudo service isc-dhcp-server restart
 ################################################################################
 ## check dhcp
 $ sudo service isc-dhcp-server status
+
+################################################################################
+## clear cache dhcp
+$ sudo service isc-dhcp-server stop
+$ rm /var/lib/dhcp/dhcpd.leases~
+$ sudo echo "" > /var/lib/dhcp/dhcpd.leases
+$ sudo service isc-dhcp-server start
+
+$ sudo service isc-dhcp-server status

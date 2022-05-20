@@ -16,6 +16,7 @@ declare name_iptables="iptables"
 declare name_timeserver="timeserver"
 declare name_mountdisks="mountdisks"
 declare name_nginx="nginx"
+declare name_postgresql="postgresql"
 
 # ---------------------------------------------------------------------------- #
 # -------------- inner functions --------------------------------------------- #
@@ -68,7 +69,7 @@ function backup_for_dhcp() {
     check_backup_catalogs $name_dhcp
     printf "${GREEN}2) Creating backup for dhcp.${NC}\n" 
     script_name='run_backup_dhcp.sh'
-    files_for_backup='/etc/default/isc-dhcp-server,/etc/dhcp/dhcpd.conf'  
+    files_for_backup='/etc/default/isc-dhcp-server,/etc/dhcp/dhcpd.conf,/var/lib/dhcp/dhcpd.leases,/var/lib/dhcp/dhcpd.leases~'  
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_dhcp --name 'backup_'$name_dhcp --script 'yes'
     execute_scrip_for_backup $script_name
 }
@@ -133,6 +134,16 @@ function backup_for_nginx() {
     execute_scrip_for_backup $script_name
 }
 
+# -------------- postgresql -------------------------------------------------- #
+function backup_for_postgresql() {
+    check_backup_catalogs $name_postgresql
+    printf "${GREEN}7) Creating backup for postgresql.${NC}\n" 
+    script_name='run_backup_postgresql.sh'
+    files_for_backup='/etc/postgresql/14/main/pg_hba.conf,/etc/postgresql/14/main/postgresql.conf'
+    ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_postgresql --name 'backup_'$name_postgresql --script 'yes'
+    execute_scrip_for_backup $script_name
+}
+
 # -------------- all --------------------------------------------------------- #
 function backup_all() {
     backup_for_apt
@@ -143,6 +154,7 @@ function backup_all() {
     backup_for_timeserver
     backup_for_mount_disks
     backup_for_nginx
+    backup_for_postgresql
 }
 
 # -------------- main -------------------------------------------------------- #
@@ -157,6 +169,7 @@ options=("Backup for apt"
          "backup for time-server"
          "backup for mount disks"
          "backup for nginx"
+         "backup for postgresql"
          "backup all"
          "backup all and quit"
          "Quit")
@@ -186,6 +199,9 @@ do
             ;;
         "backup for nginx")
             backup_for_nginx
+            ;;
+        "backup for postgresql")
+            backup_for_postgresql
             ;;
         "backup all")
            backup_all

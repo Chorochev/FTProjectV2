@@ -32,3 +32,17 @@ $ su - postgres
 $ psql -c "ALTER USER postgres WITH PASSWORD 'postgres';"
 
 $ systemctl restart postgresql
+
+################################################################################
+## connect to server
+#### edit configuration
+$ nano /etc/postgresql/14/main/postgresql.conf
+-----------------------------------------------------------
+listen_addresses = '*' # for all IPs
+-----------------------------------------------------------
+$ nano /etc/postgresql/14/main/pg_hba.conf
+#### add to end of file
+-----------------------------------------------------------
+host    all             all              0.0.0.0/0                       md5
+host    all             all              ::/0                            md5
+-----------------------------------------------------------
