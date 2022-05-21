@@ -20,3 +20,4 @@
                      http://webft/ outside
 20-05-2022 Web-app connect to DatabaseFT
 20-05-2022 Web-app add static html http://webft/static/index.html
+21-05-2022 Installing Prometheus
