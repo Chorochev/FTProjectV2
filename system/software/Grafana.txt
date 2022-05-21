@@ -5,6 +5,7 @@
 ## adds components
 $ sudo apt install -y apt-transport-https
 $ sudo apt install -y software-properties-common
+$ sudo apt install curl
 
 ## adds a key of repository
 $ curl -s https://packages.grafana.com/gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/grafana_key.gpg --import
@@ -28,9 +29,15 @@ $ sudo systemctl enable grafana-server
 
 ## check
 http://webft:3000/
+http://routerft:3000/
+http://databaseft:3000/
 
 ## for first entering
 ## user:       admin
 ## password:   admin
 
 ## password:   3qY-QTc-bE4-QCS
+
+## Manage -> Import
+## Prometheus 2.0 Overview
+https://grafana.com/grafana/dashboards/3662

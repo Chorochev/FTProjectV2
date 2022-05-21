@@ -22,3 +22,4 @@
 18-05-2022 Instaling 'pgAdmin 4'.
 18-05-2022 Create DB for PostgreSQL.
 21-05-2022 Installing Prometheus http://databaseft:9090/
+21-05-2022 Installing Grafana http://databaseft:3000/
