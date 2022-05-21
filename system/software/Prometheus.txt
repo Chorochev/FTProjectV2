@@ -1,0 +1,15 @@
+################################################################################
+## Installing Prometheus
+## https://prometheus.io/
+
+## search packages
+$ sudo apt search prometheus
+
+## install
+$ sudo apt install prometheus
+
+$ sudo systemctl start prometheus
+$ sudo systemctl status prometheus
+
+http://webft:9090/
+
