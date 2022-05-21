@@ -97,7 +97,17 @@ location / {
                 # try_files $uri $uri/ =404;
                 include uwsgi_params;
                 uwsgi_pass unix:/var/www/python_app/uwsgi.sock;
-                try_files $uri $uri/ /wsgi.py?$query_string;
+                try_files $uri $uri/ /wsgi.py?$query_string =404;
+        }
+
+location = /favicon.ico {
+                return 204;
+                access_log off;
+                log_not_found off;
+        }
+
+location /static/ {
+                try_files $uri $uri/ =404;
         }
 --------------------------------------------------------------
 # check settings

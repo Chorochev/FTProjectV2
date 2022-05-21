@@ -19,3 +19,4 @@
            web-app:  http://localhost into WeFT
                      http://webft/ outside
 20-05-2022 Web-app connect to DatabaseFT
+20-05-2022 Web-app add static html http://webft/static/index.html

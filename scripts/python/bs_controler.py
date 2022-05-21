@@ -10,7 +10,7 @@ logging.basicConfig(filename="/var/local/logs/bookshelf.debug.controler.log",
                     format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
                     datefmt="%d/%b/%Y %H:%M:%S")
 
-str_connect="dbname='bookshelf' user='postgres' host='192.168.0.103' password='postgres'"
+str_connect="dbname='bookshelf' user='postgres' host='DatabaseFT.local' password='postgres'"
 
 def magazines():
     conn = psycopg2.connect(str_connect)

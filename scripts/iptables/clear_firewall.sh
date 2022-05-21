@@ -10,3 +10,7 @@ sudo iptables -F -t mangle
 sudo iptables -X
 sudo iptables -X -t nat
 sudo iptables -X -t mangle
+
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -P INPUT ACCEPT
