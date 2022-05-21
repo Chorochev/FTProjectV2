@@ -2,8 +2,35 @@
 ## Installing grafana
 ## https://grafana.com/
 
+## adds components
+$ sudo apt install -y apt-transport-https
+$ sudo apt install -y software-properties-common
 
+## adds a key of repository
+$ curl -s https://packages.grafana.com/gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/grafana_key.gpg --import
+
+## adds the repository
+$ echo "deb https://packages.grafana.com/enterprise/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+
+$ chmod +r /etc/apt/trusted.gpg.d/grafana_key.gpg
+
+## update
 $ sudo apt update
-
+## install
 $ sudo apt install grafana
 
+## run
+$ sudo systemctl start grafana-server
+## status
+$ sudo systemctl status grafana-server
+## adds to boot
+$ sudo systemctl enable grafana-server
+
+## check
+http://webft:3000/
+
+## for first entering
+## user:       admin
+## password:   admin
+
+## password:   3qY-QTc-bE4-QCS
