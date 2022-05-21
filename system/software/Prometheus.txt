@@ -12,4 +12,5 @@ $ sudo systemctl start prometheus
 $ sudo systemctl status prometheus
 
 http://webft:9090/
-
+http://routerft:9090/
+http://databaseft:9090/

@@ -1,0 +1,18 @@
+################################################################################
+## cleans RouterFT
+
+## first step
+$ sudo systemctl restart networking
+$ sudo systemctl status networking
+
+$ ip addr
+$ sudo arp
+
+## clear IP from interface
+$ sudo dhclient -r enp0s8
+$ sudo dhclient -r enp0s9
+
+## get new IP
+$ sudo dhclient -1 enp0s8
+$ sudo dhclient -1 enp0s9
+
