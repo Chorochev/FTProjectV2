@@ -24,3 +24,4 @@
 21-05-2022 Installing Prometheus http://databaseft:9090/
 21-05-2022 Installing Grafana http://databaseft:3000/
 24-05-2022 Adds a dashboard to Grafana.
+24-05-2022 Adds auto-backup for BD.

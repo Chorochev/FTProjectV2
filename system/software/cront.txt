@@ -1,0 +1,11 @@
+################################################################################
+## Cron 
+## crontab - maintain crontab files for individual users
+## edit 
+$ crontab -e
+## adds: run every minute
+* * * * * /local/scripts/run_bookshelf_backup.sh
+
+
+## show tasks
+$ crontab -l
