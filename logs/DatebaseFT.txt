@@ -26,3 +26,4 @@
 24-05-2022 Adds a dashboard to Grafana.
 24-05-2022 Adds auto-backup for BD.
 25-05-2022 Creating Prometheus alerts 'CPU_warning'.
+25-05-2022 Set sending Prometheus alerts 'CPU_warning' to localhost.

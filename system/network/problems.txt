@@ -16,3 +16,9 @@ $ sudo dhclient -r enp0s9
 $ sudo dhclient -1 enp0s8
 $ sudo dhclient -1 enp0s9
 
+
+# show logs
+$ cat /var/log/syslog | grep prometheus-alertmanager | tail
+
+# show mails
+$ tail -n50 /var/mail/alex

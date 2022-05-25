@@ -1,0 +1,18 @@
+################################################################################
+## Config mail-service
+## exim4 - a Mail Transfer Agent
+sudo dpkg-reconfigure exim4-config
+
+## Restart exim4
+$ sudo systemctl status exim4
+$ sudo systemctl restart exim4
+
+## Send test mail
+$ echo "test mail." | mail -s Test localhost
+
+## Show logs
+$ tail /var/log/exim4/mainlog
+$ tail -n50 /var/mail/alex cat /var/log/syslog | grep prometheus-alertmanager | tail
+
+## Show mails
+tail /var/mail/alex    
