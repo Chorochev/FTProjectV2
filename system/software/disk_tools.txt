@@ -1,0 +1,8 @@
+################################################################################
+
+## du - estimate file space usage
+## show count bytes
+$ du -b /local/backups/bookshelf/
+
+## show count files in the direction
+find /local/backups/bookshelf/* -type f | wc -l
