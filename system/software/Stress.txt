@@ -1,0 +1,9 @@
+################################################################################
+## Install stress
+## stress - tool to impose load on and stress test systems
+
+$ sudo apt install stress
+
+## run test:
+## 4 threads, 10 seconds
+$ stress --cpu 4 --timeout 10
