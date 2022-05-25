@@ -18,6 +18,7 @@ declare name_mountdisks="mountdisks"
 declare name_nginx="nginx"
 declare name_postgresql="postgresql"
 declare name_grafana="grafana"
+declare name_alertManager="alertManager"
 
 # ---------------------------------------------------------------------------- #
 # -------------- inner functions --------------------------------------------- #
@@ -145,13 +146,23 @@ function backup_for_postgresql() {
     execute_scrip_for_backup $script_name
 }
 
-# -------------- grafana -------------------------------------------------- #
+# -------------- grafana ----------------------------------------------------- #
 function backup_for_grafana() {
     check_backup_catalogs $name_grafana
     printf "${GREEN}7) Creating backup for grafana.${NC}\n" 
     script_name='run_backup_grafana.sh'
     files_for_backup='/etc/grafana/grafana.ini'
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_grafana --name 'backup_'$name_grafana --script 'yes'
+    execute_scrip_for_backup $script_name
+}
+
+# -------------- AlertManager ------------------------------------------------ #
+function backup_for_alertManager() {
+    check_backup_catalogs $name_alertManager
+    printf "${GREEN}7) Creating backup for alertManager.${NC}\n" 
+    script_name='run_backup_alertManager.sh'
+    files_for_backup='/etc/prometheus/prometheus.yml,/etc/prometheus/cpu_rules.yml,/etc/prometheus/disk_rules.yml'
+    ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_alertManager --name 'backup_'$name_alertManager --script 'yes'
     execute_scrip_for_backup $script_name
 }
 
@@ -167,6 +178,7 @@ function backup_all() {
     backup_for_nginx
     backup_for_postgresql
     backup_for_grafana
+    backup_for_alertManager
 }
 
 # -------------- main -------------------------------------------------------- #
@@ -183,8 +195,9 @@ options=("Backup for apt"
          "backup for nginx"
          "backup for postgresql"
          "backup for grafana"
+         "backup for alertManager"
          "backup all"
-         "backup all and quit"
+         "backup all and quit"         
          "Quit")
 select opt in "${options[@]}"
 do
@@ -218,6 +231,9 @@ do
             ;;
         "backup for grafana")
             backup_for_grafana
+            ;;
+        "backup for alertManager")
+            backup_for_alertManager
             ;;
         "backup all")
            backup_all
