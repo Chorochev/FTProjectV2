@@ -1,5 +1,6 @@
 ################################################################################
 ## Prometheus alerts 
+## https://awesome-prometheus-alerts.grep.to/rules.html
 ################################################################################
 ## Create CPU_warning
 ## Create file
