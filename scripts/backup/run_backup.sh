@@ -161,7 +161,7 @@ function backup_for_alertManager() {
     check_backup_catalogs $name_alertManager
     printf "${GREEN}7) Creating backup for alertManager.${NC}\n" 
     script_name='run_backup_alertManager.sh'
-    files_for_backup='/etc/prometheus/prometheus.yml,/etc/prometheus/cpu_rules.yml,/etc/prometheus/disk_rules.yml'
+    files_for_backup='/etc/prometheus/prometheus.yml,/etc/prometheus/cpu_rules.yml,/etc/prometheus/disk_rules.yml,/etc/prometheus/alertmanager.yml'
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_alertManager --name 'backup_'$name_alertManager --script 'yes'
     execute_scrip_for_backup $script_name
 }

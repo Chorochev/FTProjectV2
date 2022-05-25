@@ -1,2 +1,58 @@
 ################################################################################
-## Install ALERTMANAGER for PROMETHEUS
+## Install AlertManager for Prometheus
+## find 
+$ apt show prometheus-alertmanager
+
+## Install AlertManager
+$ sudo apt install prometheus-alertmanager
+## Install web-interface
+$ /usr/share/prometheus/alertmanager/generate-ui.sh
+$ /usr/share/prometheus/alertmanager/generate-ui.sh
+
+## Start service
+$ sudo systemctl start prometheus-alertmanager
+## Status of service
+$ sudo systemctl status prometheus-alertmanager
+## Status of service
+$ sudo systemctl restart prometheus-alertmanager
+
+## web-interface of AlertManager
+http://databaseft:9093/
+
+################################################################################
+## Send alerts to AlertManager from Prometheus
+## Edit config Prometheus
+$ nano /etc/prometheus/prometheus.yml
+## add:
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: ['localhost:9093']
+
+## Restart Prometheus
+$ sudo systemctl restart prometheus  
+$ sudo systemctl status prometheus
+
+################################################################################
+## Configuration AlertManager for send mails
+$ nano /etc/prometheus/alertmanager.yml
+
+$ sudo systemctl restart prometheus-alertmanager
+$ sudo systemctl status prometheus-alertmanager
+
+global:
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 10m
+  repeat_interval: 60m
+  receiver: 'email'
+receivers:
+- name: 'email'
+  email_configs:
+  - to: 'адрес_электронной_почты_получателя'
+    from: 'адрес_электронной_почты_отправителя'
+    smarthost: 'SMTP_хост:порт'
+    auth_username: 'имя_пользователя'
+    auth_identity: 'имя_пользователя'
+    auth_password: 'пароль'

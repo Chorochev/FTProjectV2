@@ -23,3 +23,14 @@ $ sudo arp -n
 $ sudo route
 ## add the route => route add .....
 ## del the route => route del .....
+
+################################################################################
+## install iptraf
+$ sudo apt install iptraf
+## run 
+$ sudo iptraf-ng
+
+################################################################################
+## Show open ports
+$ sudo netstat -tulpn
+$ sudo ss -tulpn

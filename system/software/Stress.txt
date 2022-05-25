@@ -7,3 +7,6 @@ $ sudo apt install stress
 ## run test:
 ## 4 threads, 10 seconds
 $ stress --cpu 4 --timeout 10
+
+## 24 threads, 90 seconds
+$ stress --cpu 24 --timeout 90
