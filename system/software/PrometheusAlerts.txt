@@ -1,0 +1,40 @@
+################################################################################
+## Prometheus alerts 
+################################################################################
+## Create CPU_warning
+## Create file
+$ touch /etc/prometheus/cpu_rules.yml
+## Edit rules
+$ nano /etc/prometheus/cpu_rules.yml
+## add:
+
+groups:
+  - name: CPU_warning
+    rules:
+          - alert: HostHighCpuLoad
+            expr: ((100 - (avg by (instance) (irate(node_cpu_seconds_total{job="node",mode="idle"}[5m])) * 100)) > 80)
+            for: 0m
+            labels:
+              severity: warning
+            annotations:
+              summary: Host high CPU load (instance {{ $labels.instance }})
+              description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+## Edit config Prometheus
+$ nano /etc/prometheus/prometheus.yml
+
+## check rules
+$ promtool check rules /etc/prometheus/cpu_rules.yml
+Checking /etc/prometheus/cpu_rules.yml
+  SUCCESS: 1 rules found
+################################################################################
+ 
+## Restart Prometheus
+$ sudo systemctl restart prometheus  
+$ sudo systemctl status prometheus
+
+## Checking CPU_warning
+## run test:
+## 24 threads, 90 seconds
+$ stress --cpu 24 --timeout 90
+## go to http://databaseft:9090/classic/alerts
