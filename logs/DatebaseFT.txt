@@ -25,5 +25,4 @@
 21-05-2022 Installing Grafana http://databaseft:3000/
 24-05-2022 Adds a dashboard to Grafana.
 24-05-2022 Adds auto-backup for BD.
-25-05-2022 Install AlertManager for Prometheus.
-25-05-2022 Checking CPU_warning.
+25-05-2022 Creating Prometheus alerts 'CPU_warning'.
