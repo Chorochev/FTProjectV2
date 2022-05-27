@@ -12,39 +12,31 @@ logging.basicConfig(filename="/var/local/logs/bookshelf.debug.controler.log",
 
 str_connect="dbname='bookshelf' user='postgres' host='DatabaseFT.local' password='postgres'"
 
-def magazines():
+def execute_query(query: str):
     conn = psycopg2.connect(str_connect)
     cur = conn.cursor()
-    cur.execute("""SELECT id, name from magazines""")
+    cur.execute(query)
     rows = cur.fetchall()    
     conn.close()
+    return rows
+
+def magazines():
+    rows = execute_query("SELECT id, name from magazines")  
     return bsh.create_table(rows, ["id","name"])
 
 def article_types():
-    conn = psycopg2.connect(str_connect)
-    cur = conn.cursor()
-    cur.execute("""SELECT id, type from article_types""")
-    rows = cur.fetchall()    
-    conn.close()
+    rows = execute_query("SELECT id, type from article_types")    
     return bsh.create_table(rows, ["id","type"])
 
 def author():
-    conn = psycopg2.connect(str_connect)
-    cur = conn.cursor()
-    cur.execute("""SELECT id, author from author""")
-    rows = cur.fetchall()    
-    conn.close()
+    rows = execute_query("SELECT id, author from author")    
     return bsh.create_table(rows, ["id","author"])
 
 def articles():
-    conn = psycopg2.connect(str_connect)
-    cur = conn.cursor()
-    cur.execute("""SELECT a.id, t.type, m.name, w.author
-                     FROM articles as a INNER JOIN magazines as m ON a.magazines_id = m.id
-                          INNER JOIN article_types as t ON a.article_type_id = t.id
-                          INNER JOIN author as w ON a.author_id = w.id""")
-    rows = cur.fetchall()    
-    conn.close()
+    rows = execute_query("""SELECT a.id, t.type, m.name, w.author
+                              FROM articles as a INNER JOIN magazines as m ON a.magazines_id = m.id
+                                   INNER JOIN article_types as t ON a.article_type_id = t.id
+                                   INNER JOIN author as w ON a.author_id = w.id""")    
     return bsh.create_table(rows, ["id","type","name","author"])
 
 def all_links():

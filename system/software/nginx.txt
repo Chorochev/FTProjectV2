@@ -35,3 +35,18 @@ $ sudo systemctl enable nginx
 
 # check 
 http://localhost
+
+## Chech settings of nginx
+sudo nginx -t
+
+## Reload nginx
+## Version 1
+$ sudo systemctl restart nginx
+$ sudo systemctl reload nginx
+$ sudo nginx -s reload
+## ## Version 2
+$ sudo systemctl stop nginx
+$ sudo systemctl start nginx
+## ## Version 3 - It's working
+## Reload system
+$ sudo reboot

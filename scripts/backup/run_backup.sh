@@ -131,7 +131,7 @@ function backup_for_nginx() {
     check_backup_catalogs $name_nginx
     printf "${GREEN}7) Creating backup for nginx.${NC}\n" 
     script_name='run_backup_nginx.sh'
-    files_for_backup='/etc/nginx/sites-enabled/default,/etc/uwsgi/apps-enabled/python_app.ini'
+    files_for_backup='/etc/nginx/sites-enabled/default,/etc/uwsgi/apps-enabled/python_app.ini,/var/www/python_app/wsgi.py,/var/www/python_app/bs_helper.py,/var/www/python_app/bs_controler.py'
     ./backup.sh --create $script_name --files $files_for_backup --destination $storepath'/'$name_nginx --name 'backup_'$name_nginx --script 'yes'
     execute_scrip_for_backup $script_name
 }
