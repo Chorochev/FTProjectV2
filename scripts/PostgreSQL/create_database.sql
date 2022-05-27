@@ -44,6 +44,7 @@ CREATE TABLE articles (
     magazines_id INT,
     article_type_id INT,
     author_id INT,
+    dt timestamp default current_timestamp,
     headers VARCHAR(50),
     texts VARCHAR(500),   
     PRIMARY KEY(id),

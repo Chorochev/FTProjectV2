@@ -35,7 +35,10 @@ def application(environ, start_response):
                 if(environ['QUERY_STRING'] == 'article_types'): body += bsc.article_types()
                 if(environ['QUERY_STRING'] == 'author'): body += bsc.author()
                 if(environ['QUERY_STRING'] == 'articles'): body += bsc.articles()
-                
+                if('article=' in environ['QUERY_STRING']):
+                    id = int(str(environ['QUERY_STRING']).split("=")[1])
+                    body += bsc.create_article(id)
+
             else:
                 body += bsc.all_links()
 
