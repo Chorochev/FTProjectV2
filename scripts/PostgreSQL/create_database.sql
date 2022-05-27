@@ -44,13 +44,15 @@ CREATE TABLE articles (
     magazines_id INT,
     article_type_id INT,
     author_id INT,
+    headers VARCHAR(50),
+    texts VARCHAR(500),   
     PRIMARY KEY(id),
     FOREIGN KEY (magazines_id) REFERENCES magazines(id),
     FOREIGN KEY (article_type_id) REFERENCES article_types(id),
     FOREIGN KEY (author_id) REFERENCES author(id)
 );
 
-INSERT INTO articles (magazines_id,article_type_id,author_id) VALUES(1, 2, 3);
-INSERT INTO articles (magazines_id,article_type_id,author_id) VALUES(3, 3, 2);
-INSERT INTO articles (magazines_id,article_type_id,author_id) VALUES(2, 2, 4);
-INSERT INTO articles (magazines_id,article_type_id,author_id) VALUES(1, 2, 1);
+INSERT INTO articles (magazines_id,article_type_id,author_id, headers, texts) VALUES(1, 2, 3, 'Header_001', 'some text 001');
+INSERT INTO articles (magazines_id,article_type_id,author_id, headers, texts) VALUES(3, 3, 2, 'Header_002', 'some text 002');
+INSERT INTO articles (magazines_id,article_type_id,author_id, headers, texts) VALUES(2, 2, 4, 'Header_003', 'some text 003');
+INSERT INTO articles (magazines_id,article_type_id,author_id, headers, texts) VALUES(1, 2, 1, 'Header_004', 'some text 004');
