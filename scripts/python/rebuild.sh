@@ -17,7 +17,6 @@ function ProgressBar {
 # 1.2.1 Output example:                           
 # 1.2.1.1 Progress : [########################################] 100%
 printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%   "
-
 }
 
 clear
@@ -59,7 +58,7 @@ ProgressBar 55 100
 
 printf "${GREEN}restart uwsgi.${NC}\n"  
 systemctl restart uwsgi
-ProgressBar 80 100
+ProgressBar 90 100
 
 printf "${GREEN}restart nginx.${NC}\n"
 sudo systemctl restart nginx

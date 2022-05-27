@@ -7,14 +7,13 @@ import bs_helper as bsh
 import bs_controler as bsc
 import datetime
 
-main_log = bs_loger.setup_logger("bookshelf_web", "/var/local/logs/bookshelf.log")
+main_log = bs_loger.setup_logger("bookshelf_web", "/var/local/logs/bookshelf.log", False)
 
 def application(environ, start_response):    
     try:    
         main_log.info('Start application. [' + str(environ['REQUEST_METHOD']) + '] ' + str(environ['QUERY_STRING']) + '.')        
-        body = "<h1><p style='color:rgb(25,200,25);'>Bookshelf</p>" 
-        body += str(datetime.datetime.now())
-        body += "</h1></br>"
+        body = "<h1><p style='color:rgb(25,200,25);'>Bookshelf</p></h1>" 
+        body += "<h2><p>" + str(datetime.datetime.now()) + "</p></h2>"        
         body += "<div>"     
         
         if(environ['REQUEST_METHOD']) == 'GET':            
@@ -28,13 +27,13 @@ def application(environ, start_response):
                 # rows = bsh.get_params(environ['QUERY_STRING']) 
                 # if(len(rows) > 0): body += bsh.create_table(rows)               
 
-                if(environ['QUERY_STRING'] == 'magazines'): body += bsc.magazines()
-                if(environ['QUERY_STRING'] == 'article_types'): body += bsc.article_types()
-                if(environ['QUERY_STRING'] == 'author'): body += bsc.author()
-                if(environ['QUERY_STRING'] == 'articles'): body += bsc.articles()
+                if(environ['QUERY_STRING'] == 'magazines'): body += bsc.get_magazines_table()
+                if(environ['QUERY_STRING'] == 'article_types'): body += bsc.get_article_types_table()
+                if(environ['QUERY_STRING'] == 'author'): body += bsc.get_authors_table()
+                if(environ['QUERY_STRING'] == 'articles'): body += bsc.get_articles_table()
                 if('article=' in environ['QUERY_STRING']):
                     id = int(str(environ['QUERY_STRING']).split("=")[1])
-                    body += bsc.create_article(id)
+                    body += bsc.get_article_table(id)
 
             else:
                 body += bsc.all_links()

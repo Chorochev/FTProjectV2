@@ -6,6 +6,7 @@ $ crontab -e
 ## adds: run every minute
 * * * * * /local/scripts/run_bookshelf_backup.sh
 * * * * * python3 /local/scripts/check_backups.py
+* * * * * python3 /var/www/python_app/bs_update_bookshelf.py
 
 
 ## show tasks
