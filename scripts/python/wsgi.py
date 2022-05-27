@@ -2,19 +2,16 @@
 # -*- encoding: utf-8 -*-
 
 from io import StringIO
-import logging
+import bs_loger
 import bs_helper as bsh
 import bs_controler as bsc
 import datetime
 
-logging.basicConfig(filename="/var/local/logs/bookshelf.log", 
-                    level=logging.INFO, 
-                    format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
-                    datefmt="%d/%b/%Y %H:%M:%S")
+main_log = bs_loger.setup_logger("bookshelf_web", "/var/local/logs/bookshelf.log")
 
-def application(environ, start_response):
-    try:        
-        logging.info('start application.')        
+def application(environ, start_response):    
+    try:    
+        main_log.info('Start application. [' + str(environ['REQUEST_METHOD']) + '] ' + str(environ['QUERY_STRING']) + '.')        
         body = "<h1><p style='color:rgb(25,200,25);'>Bookshelf</p>" 
         body += str(datetime.datetime.now())
         body += "</h1></br>"
@@ -46,7 +43,7 @@ def application(environ, start_response):
         start_response('200 OK', [('Content-Type','text/html')])
         return body.encode()
     except Exception as e:
-        logging.error(str(e))
+        main_log.error(str(e))
         body = "<h1><p style='color:rgb(255,0,0);'>Bookshelf Error</p>" 
         body += str(datetime.datetime.now())
         body += "</h1></br>"
