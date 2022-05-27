@@ -24,3 +24,4 @@
 21-05-2022 Installing Grafana http://webft:3000/
 24-05-2022 Adds a dashboard to Grafana.
 27-05-2022 Show article (for sample: http://webft/?article=1)
+27-05-2022 Upgrage logging for http://webft/
