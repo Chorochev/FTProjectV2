@@ -23,6 +23,11 @@ tcpdump -r icmp01.pcap
 
 ## Save content pakets (-A)
 $ tcpdump -i enp0s3 -c 10 -A -w icmp02.pcap
+$ tcpdump -i enp0s9 ip src 192.168.70.5 -c 100 -A -w icmp.pcap
+$ tcpdump -i enp0s9 ip src 192.168.70.5 -c 100 -X -w icmp.pcap
+## Read pakets
+$ tcpdump -qns 0 -A -r icmp.pcap
+$ tcpdump -qns 0 -X -r icmp.pcap
 
 ## Save to the file for normal reading 
 $ tcpdump -i enp0s8 ip src 192.168.70.5 -c 100 -A > icmp05.pcap
