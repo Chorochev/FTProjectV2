@@ -9,3 +9,21 @@ $ sudo tcpdump -i enp0s3
 $ sudo tcpdump -i enp0s8 ip src 192.168.70.5
 ## listen multiple interfaces
 $ sudo tcpdump -i enp0s3 -i enp0s8 ip src 192.168.70.5
+
+## Show interfaces
+$ tcpdump -D
+## or
+$ tcpdump --list-interfaces
+
+## Save Data
+## save 10 packets (-c 10) to the file 'icmp01.pcap' (-w) from the interface 'enp0s3' (-i)
+$ tcpdump -i enp0s3 -c 10 -w icmp01.pcap
+## Read a file
+tcpdump -r icmp01.pcap
+
+## Save content pakets (-A)
+$ tcpdump -i enp0s3 -c 10 -A -w icmp02.pcap
+
+## Save to the file for normal reading 
+$ tcpdump -i enp0s8 ip src 192.168.70.5 -c 100 -A > icmp05.pcap
+$ tcpdump -i enp0s8 ip src 192.168.70.5 -c 100 -X > icmp06.pcap
