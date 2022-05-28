@@ -23,8 +23,9 @@ def get_random_word():
             for line in f:
                 current_line +=1
                 if(current_line >= number_line):
-                    word=line
-                    break
+                    if(len(line) > 0): 
+                        word=line
+                        break
 
     except Exception as e:        
         update_log.error("get_random_word => " + str(e))
@@ -59,19 +60,19 @@ def add_author():
     update_log.debug("enter 'add_author()'.") 
     val_author=get_random_word()
     bsc.insert_author(val_author)
-    update_log.info()("adds a author: '" + val_author + "'.") 
+    update_log.info("adds a author: '" + val_author + "'.") 
 
 def add_article_type():
     update_log.debug("enter 'add_article_types()'.") 
     val_article_type=get_random_word()
     bsc.insert_article_type(val_article_type)
-    update_log.info()("adds a article type: '" + val_article_type + "'.") 
+    update_log.info("adds a article type: '" + val_article_type + "'.") 
         
 def add_magazine():
     update_log.debug("enter 'add_magazine()'.") 
     val_magazine=get_random_word()
     bsc.insert_magazine(val_magazine)  
-    update_log.info()("adds a magazine: '" + val_magazine + "'.")    
+    update_log.info("adds a magazine: '" + val_magazine + "'.")    
 
 def add_article():
     update_log.debug("enter 'add_article()'.") 

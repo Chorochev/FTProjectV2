@@ -26,3 +26,4 @@
 27-05-2022 Show article (for sample: http://webft/?article=1)
 27-05-2022 Upgrage logging for http://webft/
 28-05-2022 Generating articles.
+28-05-2022 Creating static html-site.

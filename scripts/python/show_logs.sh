@@ -18,5 +18,7 @@ printf "${GREEN}log: /var/local/logs/bookshelf.controler.log${NC}\n"
 tail -n$1 /var/local/logs/bookshelf.controler.log
 printf "${GREEN}log: /var/local/logs/bookshelf.update.log${NC}\n" 
 tail -n$1 /var/local/logs/bookshelf.update.log
+printf "${GREEN}log: /var/local/logs/bookshelf.createstatichtml.log${NC}\n" 
+tail -n$1 /var/local/logs/bookshelf.createstatichtml.log
 
 printf "${GREEN}end.${NC}\n"  

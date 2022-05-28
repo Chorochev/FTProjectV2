@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>__NAME__</title>
+    <style>
+        body {
+            width: 35em;
+            margin: 0 auto;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>
+            <p style='color:rgb(25,200,25);'>Bookshelf</p>
+        </h1>
+    </div>
+
+    <div>
+        <h1>__HEADER__</h1>
+        <div>
+            <table border="0" width="300" cols="2">
+                <tr>
+                    <td><a href='/static/index.html'>to the main page</a></td>
+                    <td><a href='/static/articles.html'>back to articles</a></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table border="1" bordercolor="black" bgcolor="#ffcc00" width="300" cols="2">
+                <caption>info</caption>
+                <tr>
+                    <td>id:</td>
+                    <td>__ARTICLEID__</td>
+                </tr>
+                <tr>
+                    <td>type:</td>
+                    <td>__ARTICLETYPE__</td>
+                </tr>
+                <tr>
+                    <td>magazine name:</td>
+                    <td>__MAGAZINENAME__</td>
+                </tr>
+                <tr>
+                    <td>author name:</td>
+                    <td>__AUTHORNAME__</td>
+                </tr>
+                <tr>
+                    <td>date of publication:</td>
+                    <td>__DATEPUBLICATION__</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <textarea rows='15' cols='100' disabled>__BODY__</textarea>
+        </div>
+    </div>
+
+</body>
+
+</html>

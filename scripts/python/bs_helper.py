@@ -17,13 +17,17 @@ def get_params(query_string: str):
     update_log.debug("exit 'get_params()'.")     
     return arr_result
 
-def create_table(arr_string: list, headers: list, headerh1: str):
-    update_log.debug("enter 'create_table()'.") 
+def create_header(arr_string: list, headerh1: str):
+    update_log.debug("enter 'create_header()'.") 
     str_result = "<h3><p style='color:rgb(25,100,25);'>" + headerh1 + " " + str(len(arr_string)) + " items.</p></h3>" 
     str_result += "<div><a href='/'>to the main page</a></div>"
-    str_result += "<tr><td><a href='?" + headerh1 + "'>refresh</a></td></tr>"
-    str_result += "<table border='1' bgcolor='#ffcc00'>"   
-    str_result += "<tr>"    
+    str_result += "<div><a href='?" + headerh1 + "'>refresh</a></div>"
+    update_log.debug("exit 'create_header()'.")  
+    return str_result
+
+def create_table(arr_string: list, headers: list):
+    update_log.debug("enter 'create_table()'.")   
+    str_result = "<table>"
     for h in headers:
         str_result += "<th>" + str(h) + "</th>"
     str_result += "</tr>"  
@@ -37,4 +41,9 @@ def create_table(arr_string: list, headers: list, headerh1: str):
     
     str_result += "</table>"
     update_log.debug("exit 'create_table()'.")  
+    return str_result
+
+def create_table_with_header(arr_string: list, headers: list, headerh1: str):
+    str_result = create_header(arr_string, headerh1)
+    str_result += create_table(arr_string, headers)
     return str_result

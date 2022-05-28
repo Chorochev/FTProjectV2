@@ -29,7 +29,7 @@ def application(environ, start_response):
 
                 if(environ['QUERY_STRING'] == 'magazines'): body += bsc.get_magazines_table()
                 if(environ['QUERY_STRING'] == 'article_types'): body += bsc.get_article_types_table()
-                if(environ['QUERY_STRING'] == 'author'): body += bsc.get_authors_table()
+                if(environ['QUERY_STRING'] == 'authors'): body += bsc.get_authors_table()
                 if(environ['QUERY_STRING'] == 'articles'): body += bsc.get_articles_table()
                 if('article=' in environ['QUERY_STRING']):
                     id = int(str(environ['QUERY_STRING']).split("=")[1])
