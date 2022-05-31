@@ -29,3 +29,4 @@
 25-05-2022 Set sending Prometheus alerts 'CPU_warning' to localhost.
 26-05-2022 Check backups and send mails.
 28-05-2022 Generating articles.
+31-05-2022 Firewall. Working firewall after reboot.

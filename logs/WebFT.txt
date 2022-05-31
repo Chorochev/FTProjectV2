@@ -28,3 +28,8 @@
 28-05-2022 Generating articles.
 28-05-2022 Creating static html-site.
 31-05-2022 Working firewall after reboot.
+31-05-2022 Grafana http://WebFT-Admin:3000/ (192.168.0.101)
+           Prometheus http://WebFT-Admin:9090/ (192.168.0.101)
+           web-app: http://WebFT-Internet/ (192.168.0.200)
+                    https://WebFT-Internet/ (192.168.0.200)
+31-05-2022 Firewall. Working firewall after reboot.

@@ -147,6 +147,10 @@ $ chmod +x /etc/network/if-pre-up.d/firewall
 $ cp /home/sshalex/firewall/DatabaseFT_Firewall.sh /etc/network/if-pre-up.d/firewall
 $ chmod +x /etc/network/if-pre-up.d/firewall
 
+## WebFT
+$ cp /home/sshalex/iptables/WebFT_Firewall.sh /etc/network/if-pre-up.d/firewall
+$ chmod +x /etc/network/if-pre-up.d/firewall
+
 ################################################################################
 ## Log for firewall
 ## creating file
