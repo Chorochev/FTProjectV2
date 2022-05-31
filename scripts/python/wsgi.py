@@ -12,7 +12,8 @@ main_log = bs_loger.setup_logger("bookshelf_web", "/var/local/logs/bookshelf.log
 def application(environ, start_response):    
     try:    
         main_log.info('Start application. [' + str(environ['REQUEST_METHOD']) + '] ' + str(environ['QUERY_STRING']) + '.')        
-        body = "<h1><p style='color:rgb(25,200,25);'>Bookshelf</p></h1>" 
+        body = "<!DOCTYPE html><html><head><title>Bookshelf</title></head><body>"
+        body += "<h1><p style='color:rgb(25,200,25);'>Bookshelf</p></h1>" 
         body += "<h2><p>" + str(datetime.datetime.now()) + "</p></h2>"        
         body += "<div>"     
         
@@ -39,6 +40,7 @@ def application(environ, start_response):
                 body += bsc.all_links()
 
         body += "</div>"
+        body += "</body></html>"
         start_response('200 OK', [('Content-Type','text/html')])
         return body.encode()
     except Exception as e:
