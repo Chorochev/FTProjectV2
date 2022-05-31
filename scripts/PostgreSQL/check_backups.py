@@ -19,7 +19,7 @@ config_path="/local/scripts/backups.conf"
 # Settings of config
 max_count_files=50
 max_count_bytes=102400
-is_send_mail=True
+is_send_mail=bool(False)
 
 
 # create config
@@ -128,9 +128,9 @@ def fun_check_count_bytes():
                 body=str(current_count_bytes) + " bytes in '" + backup_dir + "'"
                 fun_send_email(header, body)
                 fun_replace_config(False)
-        print("current_count_bytes="+ str(current_count_bytes))
+        #print("current_count_bytes="+ str(current_count_bytes))
     except Exception as e:
-        logging.error("fun_check_count_files: " + str(e))        
+        logging.error("fun_check_count_bytes: " + str(e))        
 
 # Run
 fun_config()
