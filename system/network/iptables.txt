@@ -143,6 +143,10 @@ $ sudo iptables-save > iptables_rules_temp.ipv4
 $ cp /home/sshalex/iptables/firewall /etc/network/if-pre-up.d/firewall
 $ chmod +x /etc/network/if-pre-up.d/firewall
 
+## DatabaseFT
+$ cp /home/sshalex/firewall/DatabaseFT_Firewall.sh /etc/network/if-pre-up.d/firewall
+$ chmod +x /etc/network/if-pre-up.d/firewall
+
 ################################################################################
 ## Log for firewall
 ## creating file

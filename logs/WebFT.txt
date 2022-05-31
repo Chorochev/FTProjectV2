@@ -27,3 +27,4 @@
 27-05-2022 Upgrage logging for http://webft/
 28-05-2022 Generating articles.
 28-05-2022 Creating static html-site.
+31-05-2022 Working firewall after reboot.
