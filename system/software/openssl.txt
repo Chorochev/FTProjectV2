@@ -1,0 +1,36 @@
+################################################################################
+## Installing openssl
+
+$ mkdir /home/sshalex/openssl
+$ cd /home/sshalex/openssl
+## Creating SSL for localhost
+$ openssl req -x509 -out localhost.crt -keyout localhost.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=localhost' -extensions EXT -config <( \
+   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+
+## copying 
+cp /home/sshalex/openssl/localhost.crt /var/www/python_app/localhost.crt
+cp /home/sshalex/openssl/localhost.key /var/www/python_app/localhost.key
+
+################################################################################
+## setting nginx
+nano /etc/nginx/sites-enabled/default
+# # Editing
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        # SSL configuration
+        #
+        listen 443 ssl default_server;
+        listen [::]:443 ssl default_server;
+        ssl_certificate     /var/www/python_app/localhost.crt;
+        ssl_certificate_key /var/www/python_app/localhost.key;
+        
+        .......
+
+## Chech settings of nginx
+$ sudo nginx -t
+## restart nginx  
+$ sudo systemctl restart nginx    

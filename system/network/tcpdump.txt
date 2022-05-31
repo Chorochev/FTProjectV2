@@ -36,9 +36,14 @@ $ tcpdump -i enp0s8 ip src 192.168.70.5 -c 100 -X > icmp06.pcap
 ## run tcpdump
 RouterFT# tcpdump -i enp0s8 ip src WebFT.local -c100 -A -w icmp.pcap
 ## run curl
-DatabaseFT# curl WebFT.local
+DatabaseFT# curl http://WebFT.local
 
 ## listen port 80
 RouterFT# tcpdump -i enp0s8 port 80 -A
 ## run curl
-DatabaseFT# curl WebFT.local
+DatabaseFT# curl http://WebFT.local
+
+## listen port 443
+RouterFT# tcpdump -i enp0s8 port 443 -A
+## run curl
+DatabaseFT# curl -k https://WebFT.local
