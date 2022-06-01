@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo systemctl restart prometheus-alertmanager
+sudo systemctl start prometheus-alertmanager

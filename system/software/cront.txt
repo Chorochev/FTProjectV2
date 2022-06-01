@@ -13,8 +13,15 @@ $ crontab -e
 ## show tasks
 $ crontab -l
 
+################################################################################
+## Version 1. [Cron] Runs the script on startup 
 $ cp /home/sshalex/restart/start_prometheus_alertmanager.sh /local/scripts/start_prometheus_alertmanager.sh
 $ chmod +x /local/scripts/start_prometheus_alertmanager.sh
-## runs the script on startup 
+## edit cron
 $ crontab -e
 @reboot  /local/scripts/start_prometheus_alertmanager.sh
+
+################################################################################
+## Version 2. [/etc/init.d] Runs the script on startup 
+$ cp /home/sshalex/restart/start_prometheus_alertmanager.sh /etc/init.d/start_prometheus_alertmanager.sh
+$ chmod +x /etc/init.d/start_prometheus_alertmanager.sh
