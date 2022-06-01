@@ -22,3 +22,7 @@ $ cat /var/log/syslog | grep prometheus-alertmanager | tail
 
 # show mails
 $ tail -n50 /var/mail/alex
+
+## View log of what systemd has don
+## -e jamp to end
+$ journalctl -e

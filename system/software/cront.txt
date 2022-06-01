@@ -12,3 +12,9 @@ $ crontab -e
 
 ## show tasks
 $ crontab -l
+
+$ cp /home/sshalex/restart/start_prometheus_alertmanager.sh /local/scripts/start_prometheus_alertmanager.sh
+$ chmod +x /local/scripts/start_prometheus_alertmanager.sh
+## runs the script on startup 
+$ crontab -e
+@reboot  /local/scripts/start_prometheus_alertmanager.sh
