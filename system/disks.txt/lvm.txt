@@ -44,3 +44,36 @@ $ sudo lvdisplay
 $  sudo mkfs.ext4 /dev/vol_grp1/logical_vol1
 
 ## !!! see mount disk in "mount.txt"
+
+################################################################################
+## expanding the disk
+## shows free space
+$ sudo vgs
+####  VG       #PV #LV #SN Attr   VSize VFree
+####  vol_grp1   2   1   0 wz--n- 7.99g 7.98g
+
+## shows info about the logical volume
+$ sudo lvdisplay
+####  --- Logical volume ---
+####  LV Path                /dev/vol_grp1/logical_vol1
+
+## shows free space for additing
+$ sudo vgdisplay
+####  --- Volume group ---
+####  ..............................  
+####  Free  PE / Size       2044 / 7.98 GiB
+
+## expanding the space
+$ sudo lvextend -l +2044 /dev/vol_grp1/logical_vol1
+####  Size of logical volume vol_grp1/logical_vol1 changed from 8.00 MiB (2 extents) to 7.99 GiB (2046 extents).
+####  Logical volume vol_grp1/logical_vol1 successfully resized.
+
+## expanding filesystem on the disk
+$ sudo resize2fs /dev/vol_grp1/logical_vol1
+####    resize2fs 1.46.2 (28-Feb-2021)
+####    Filesystem at /dev/vol_grp1/logical_vol1 is mounted on /local/files; on-line resizing required
+####    old_desc_blocks = 1, new_desc_blocks = 64
+####    The filesystem on /dev/vol_grp1/logical_vol1 is now 8380416 (1k) blocks long.
+
+## show results
+$ df -h
